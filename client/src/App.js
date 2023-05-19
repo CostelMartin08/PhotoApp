@@ -1,46 +1,25 @@
-import React, { useState } from 'react';
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Main from './Main';
-import Login from './Login';
-import Dashboard from './Dashboard';
+import Register from "./Register";
+import Login from "./Login";
+import SecureComp from "./SecureComp";
+import Main from "./Main"
+
+function App() {
 
 
 
 
-
-const App = () => {
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // Funcție de autentificare
-  const handleLogin = () => {
-    // Autentificarea cu succes
-    setIsLoggedIn(true);
-  };
-
-  // Funcție de logout
-  const handleLogout = () => {
-    // Logout-ul cu succes
-    setIsLoggedIn(false);
-  };
-
-
-  console.log(isLoggedIn)
   return (
     <Router>
       <Routes>
-
-        <Route path="/" element={<Main />}></Route>
-
-        {isLoggedIn ? (<Route path="/dashboard" element={< Dashboard onLogout={handleLogout} />}></Route>)
-          : (<Route path="/login" element={<Login onLogin={handleLogin} />} />)}
-
-
+        <Route path='/login' element={<Login />}></Route>
+        <Route path='/register' element={<Register />}></Route>
+        <Route path='/admin' element={<SecureComp />} ></Route>
+        <Route path='/' element={<Main />} ></Route>
       </Routes>
     </Router>
   );
-};
+}
 
 export default App;
-
-
