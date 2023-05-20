@@ -6,7 +6,7 @@ const storage = multer.diskStorage({
             case 'file':
                 cb(null, "client/public/uploads");
                 break;
-            case 'fileProfileImG':
+            case 'files':
                 cb(null, "client/public/uploads/UserProfilePhoto");
                 break;
             default:
@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
         }
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname);
+        cb(null, file.fieldname + "-" + file.originalname );
     },
 });
 

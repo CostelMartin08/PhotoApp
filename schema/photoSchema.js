@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+
+
 const photo = new mongoose.Schema({
     title: {
         type: String,
@@ -7,11 +9,11 @@ const photo = new mongoose.Schema({
     description: String,
     imagePath: {
         type: String,
-        required: true,
+
     },
     uploadedAt: {
         type: Date,
-        default: Date.now,
+        default: Date.now(),
     },
 });
 
