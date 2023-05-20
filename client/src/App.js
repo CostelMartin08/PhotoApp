@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Register from "./Register";
-import Login from "./Login";
-import SecureComp from "./SecureComp";
-import Main from "./Main"
+import Register from "./adminComponents/Register";
+import Login from "./adminComponents/Login";
+import SecureComp from "./adminComponents/SecureComp";
+import Main from "./userComponents/Main";
 
 function App() {
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-
+import { Link } from 'react-router-dom';
 
 
 
@@ -19,11 +19,10 @@ const Main = () => {
       url: 'http://localhost:5000/galerie',
     }).then((res) => {
       setdata(res.data);
-      console.log(res.data);
     });
   };
 
-
+  console.log(data);
 
 
 
@@ -31,7 +30,12 @@ const Main = () => {
   return (
     <section>
 
-      <div><p>Pagina accesibila {data} </p></div>
+      <div><p>Pagina accesibila  </p>
+
+
+
+        <button> <Link to="/login">Login</Link></button>
+      </div>
     </section>
   )
 }

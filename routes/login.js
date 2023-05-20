@@ -6,7 +6,7 @@ const passport = require('passport');
 router.post("/", (req, res, next) => {
     passport.authenticate("local", (err, user, info) => {
         if (err) throw err;
-        if (!user) res.send("Acest utilizator nu exista");
+        if (!user)   return res.status(404).send("Acest utilizator nu există");
         else {
             req.logIn(user, (err) => {
                 if (err) throw err;
