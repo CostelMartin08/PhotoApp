@@ -1,9 +1,76 @@
-@import url('./adminComponents.css');
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap');
+@import url('./section1.css');
+@import url('./section2.css');
+@import url('./variables.css');
 
 
-h1, h2, h3, h4, h5, h6{
+.title-font {
+    font-family: var(--font-title);
+}
 
-    color:white;
+.text-font {
+    font-family: var(--font-text);
+    font-weight: 600;
+
+}
+
+.text-font-big {
+    font-family: var(--font-text);
+    font-weight: 800;
+}
+
+.bg-set {
+    background-color: var(--color-bg);
+    color: white;
+}
+
+.bg-second-set {
+    background-color: var(--color-bg-second);
+    color: white;
+}
+
+.bg-font-set {
+    color: var(--color-bg-second);
+}
+
+.dropdown-item {
+    color: white;
+}
+.dropdown-item:active {
+
+color:white;
+background-color: var(--color-bg);
+
+}
+
+i {
+    color: white;
+    ;
+}
+
+li {
+    list-style: none;
+}
+
+.box-model {
+    border-radius: 10px;
+    box-shadow: 15px 15px 30px #e4d8d8,
+        -15px -15px 30px #c4b9b9;
+}
+
+.inregistrare-style {
+    max-width: 500px;
+}
+
+.nav-set {
+    border-bottom: solid 3px var(--color-bg-second);
+}
+
+.nav-item :hover {
+    border-bottom: solid 3px var(--color-bg-second);
+
 }
 
 
+
+  

@@ -1,0 +1,72 @@
+/* -------------------------------------------------------------------------- */
+/*                                   Banner                                   */
+/* -------------------------------------------------------------------------- */
+
+.bg-albumdetails {
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    height: 350px;
+    filter: brightness(90%);
+
+
+}
+
+.bg-content {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    filter: brightness(100%);
+
+}
+
+@media only screen and (min-width: 768px) {
+    .bg-albumdetails {
+        height: 500px;
+    }
+    .bg-content{
+        padding-left: 5%;
+    }
+
+  
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*                                   button                                   */
+/* -------------------------------------------------------------------------- */
+
+
+.button {
+    color: white;
+    background-color: var(--color-bg-second);
+    padding: 10px;
+    border: outset 3px var(--color-bg);
+    border-radius: 5px;
+    transition: border 0.1s ease-in-out;
+
+}
+
+.type-button {
+    background-color: transparent;
+    border: none;
+    color: var(--color-bg);
+    border-bottom: solid 3px var(--color-bg-second);
+}
+
+.button:hover {
+    background-color: var(--color-bg);
+    border: inset 3px var(--color-bg-second);
+}
+
+.scroll-button {
+    border: none;
+    background-color: transparent;
+    transition: background-color 3s ease-in-out;
+}
+
+.scroll-button:hover {
+    background-color: gray;
+}

@@ -6,11 +6,11 @@ const passport = require('passport');
 router.post("/", (req, res, next) => {
     passport.authenticate("local", (err, user, info) => {
         if (err) throw err;
-        if (!user)   return res.status(404).send("Acest utilizator nu există");
+        if (!user)   return res.status(404).send("This user does not exist!");
         else {
             req.logIn(user, (err) => {
                 if (err) throw err;
-                res.send("Conectare cu succes");
+                res.send("Login successful");
                 console.log(req.user);
             });
         }

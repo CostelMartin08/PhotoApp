@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
     try {
         const existingUser = await User.findOne({ username: req.body.username });
         if (existingUser) {
-            res.send("Acest utilizator deja exista");
+            res.send("This user already exists");
         } else {
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
             const newUser = new User({
@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
                 password: hashedPassword,
             });
             await newUser.save();
-            res.send("Utilizator creat cu succes");
+            res.send("User successfully created");
         }
     } catch (error) {
         console.error(error);

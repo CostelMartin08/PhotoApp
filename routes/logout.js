@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
 
     req.logout(err => {
         if (err) throw err;
-        res.send("Sunteti deconectat!");
+        res.send("You are logged out!");
     });
 });
 

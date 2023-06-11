@@ -8,20 +8,24 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const app = express();
+
 const port = 5000;
 /* -------------------------------------------------------------------------- */
 const loginRouter = require('./routes/login');
 const logoutRouter = require('./routes/logout');
 const registerRouter = require('./routes/register');
 const uploadRouter = require('./routes/upload');
+const deleteRouter = require('./routes/delete');
 /* -------------------------------------------------------------------------- */
 const database = require('./schema/mongoDBconect');
 /* -------------------------------------------------------------------------- */
 /*                                 Middleware                                 */
 /* -------------------------------------------------------------------------- */
 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(
     cors({
         origin: 'http://localhost:3000',
@@ -49,7 +53,7 @@ app.use('/login', loginRouter);
 app.use('/disconnection', logoutRouter);
 app.use('/register', registerRouter);
 app.use('/galerie', uploadRouter);
-
+app.use('/delete', deleteRouter);
 
 
 app.get('/user', (req, res) => {

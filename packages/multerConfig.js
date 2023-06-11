@@ -1,20 +1,25 @@
 const multer = require("multer");
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
 
-        switch (file.fieldname) {
-            case 'file':
-                cb(null, "client/public/uploads");
+const storage = multer.diskStorage({
+    destination: function (req, files, cb) {
+
+        switch (files.fieldname) {
+            case 'nunti':
+                cb(null, "client/public/uploads/Nunti");
                 break;
-            case 'files':
-                cb(null, "client/public/uploads/UserProfilePhoto");
+            case 'botezuri':
+                cb(null, "client/public/uploads/Botezuri");
+                break;
+            case 'diverse':
+                cb(null, "client/public/uploads/Diverse");
                 break;
             default:
                 cb(null, "client/public/uploads");
         }
     },
     filename: function (req, file, cb) {
-        cb(null, file.fieldname + "-" + file.originalname );
+        console.log(file)
+        cb(null, file.originalname);
     },
 });
 

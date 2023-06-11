@@ -1,22 +1,62 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Register from "./adminComponents/Register";
-import Login from "./adminComponents/Login";
-import SecureComp from "./adminComponents/SecureComp";
-import Main from "./userComponents/Main";
-
-function App() {
+import Axios from "axios";
 
 
+import Main from "./components/section_1/Main";
+
+import Register from "./components/section_1/Register";
+import Login from "./components/section_1/Login";
+import WeddingPhoto from "./components/section_1/weddingPhoto";
+import ControlPanel from "./components/section_1/controlPanel";
+import AlbumDetails from "./components/section_1/AlbumDetails";
+import VideoDetails from "./components/section_1/videoDetails";
+
+const App = () => {
+  const [connection, setConnection] = useState(false);
+  const [data, setdata] = useState([]);
+
+  useEffect(() => {
+    const isLoggedIn = JSON.parse(localStorage.getItem('status')) === true
+    setConnection(isLoggedIn);
+  }, []);
+
+  const login = () => {
+    setConnection(true);
+    localStorage.setItem('status', JSON.stringify(true))
+  };
+
+  const logout = () => {
+    setConnection(false);
+    localStorage.removeItem('status');
+  };
+
+
+  const getData = async (parametruURL) => {
+    try {
+      const response = await Axios({
+        method: 'GET',
+        withCredentials: true,
+        url: `http://localhost:5000/galerie/${parametruURL}`,
+      });
+      setdata(response.data);
+    }
+    catch (error) {
+      console.error(error);
+    }
+  };
 
 
   return (
     <Router>
       <Routes>
-        <Route path='/login' element={<Login />}></Route>
-        <Route path='/register' element={<Register />}></Route>
-        <Route path='/controlpanel' element={<SecureComp />} ></Route>
-        <Route path='/' element={<Main />} ></Route>
+        <Route path='/login' element={<Login connection={login} />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/' element={<Main disconnection={logout} status={connection} loadingData={getData} sendData={data} />} />
+        <Route path='/controlPanel' element={<ControlPanel status={connection} disconnection={logout} />} />
+        <Route path='portofoliuFoto/:category' element={<WeddingPhoto loadingData={getData} sendData={data} status={connection}  />} />
+        <Route path='portofoliuVideo/:video' element ={<VideoDetails />}/>
+        <Route path="portofoliuFoto/:category/:title/:index" element={<AlbumDetails loadingData={getData} sendData={data} />} />
       </Routes>
     </Router>
   );
