@@ -17,23 +17,29 @@ function AlbumDetails(props) {
     const [openModal, setOpenModal] = useState(false);
     const gridRef = useRef(null);
 
+    const data = props.sendData[index];
+
     useEffect(() => {
-        const grid = gridRef.current;
-        const masonryInstance = new Masonry(grid, {
-            itemSelector: '.grid-item',
-            columnWidth: 0.5,
-            percentPosition: true,
-        });
-        const imagesLoadedInstance = imagesLoaded(grid);
+        if (data) {
+            const grid = gridRef.current;
+            const masonryInstance = new Masonry(grid, {
+                itemSelector: '.grid-item',
+                columnWidth: '.grid-sizer',
+                percentPosition: true,
+            });
+            const imagesLoadedInstance = imagesLoaded(grid);
+    
+            imagesLoadedInstance.on('always', () => {
+                masonryInstance.layout();
+            });
+    
+            return () => {
+                imagesLoadedInstance.off('always');
+            };
+        }
+    }, [data]);
+    
 
-        imagesLoadedInstance.on('always', () => {
-            masonryInstance.layout();
-        });
-
-        return () => {
-            imagesLoadedInstance.off('always');
-        };
-    }, [props.sendData[index]]);
 
 
     useEffect(() => {
@@ -50,7 +56,7 @@ function AlbumDetails(props) {
             default:
                 break;
         }
-    }, []);
+    }, [param[2]]);
 
     const handleOpenModal = (indexu) => {
         setSlideNumber(indexu);
@@ -143,7 +149,7 @@ function AlbumDetails(props) {
                                     props.sendData[index].content.map((slide, indexu) => (
                                         <div className="grid-item" key={indexu} onClick={() => handleOpenModal(indexu)}>
                                             <img
-                                                className="photo-grid"
+                                                className="photo-grid "
                                                 src={`/uploads/${param[2]}/${slide}`}
                                                 alt={`poza${indexu}`}
                                                 loading="lazy"

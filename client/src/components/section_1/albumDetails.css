@@ -69,7 +69,6 @@
   right: 40px;
 }
 
-/* Modifica pentru a vedea imagine inalte in mod optim */
 .fullScreenImage {
   height: 97vh;
   display: flex;
@@ -106,51 +105,77 @@
   }
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                   mansory                                  */
+/* -------------------------------------------------------------------------- */
 
 .masonry-grid {
+  height: 100%;
   margin-top: 50px;
   display: grid;
+  gap: 1px;
   grid-template-columns: repeat(3, 1fr);
-  /* Trei coloane egale */
-  gap: 20px;
-  justify-content: center;
-  /* Centrează pe orizontală */
-  align-items: center;
-  /* Centrează pe verticală */
-}
 
-.grid-item {
-  margin: 2px;
-  max-width: 33%;
-  /* Lățimea maximă a elementului este lățimea containerului */
-  height: auto;
 }
 
 .photo-grid {
   width: 100%;
   height: auto;
+  object-fit: contain;
+  margin: 15px 0 15px 0;
 }
 
-@media only screen and (max-width: 1245px) {
+.grid-item {
+
+  width: calc(95% / 3);
+}
+
+.grid-sizer {
+  width: calc(100% / 3);
+}
+
+@media only screen and (max-width: 1100px) {
   .masonry-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .photo-grid {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin: 15px 0 15px 0;
+  }
+
   .grid-item {
-    max-width: 49%;
+
+    width: calc(95% / 2);
+  }
+
+  .grid-sizer {
+    width: calc(100% / 2);
   }
 
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 600px) {
+
   .masonry-grid {
     grid-template-columns: repeat(1, 1fr);
   }
 
-  .grid-item {
-    max-width: 98%;
+  .photo-grid {
+    width: 100%;
     height: auto;
+    object-fit: cover;
+    margin: 10px 0 10px 0;
   }
 
+  .grid-sizer {
+    width: calc(100% / 1);
+  }
+
+  .grid-item {
+    width: calc(100% / 1);
+  }
 
 }

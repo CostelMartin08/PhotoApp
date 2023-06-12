@@ -1,26 +1,8 @@
 import React from "react";
 import Slider from 'react-slick';
-import { useState, useEffect } from "react";
-
 
 
 const Carusel = () => {
-
-
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setWindowWidth(window.innerWidth);
-        };
-
-        window.addEventListener("resize", handleResize);
-
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
-
 
     const settings = {
         arrows: false,
@@ -37,51 +19,49 @@ const Carusel = () => {
 
     };
 
-
     return (
         <Slider  {...settings} >
             <div>
                 <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--1s.avif)' }}>
                     <img className="img-fluid mx-auto carusel-img"
-                        src="/uploads/carusel--1s.avif" 
-                        srcSet="/uploads/carusel--1s.avif 700w, /uploads/carusel--1.avif 1000w"
-                           alt="carusel-image-1" />
+                        src="/uploads/carusel--1s.avif"
+                        alt="miri pe alee" />
                 </div>
 
             </div>
             <div>
                 <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--2s.avif)' }}>
-                    <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--2s.avif" alt="carusel-image-3" />
+                    <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--2s.avif" alt="miri pe punte" />
                 </div>
             </div>
             <div>
                 <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--3s.avif)' }}>
-                    <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--3s.avif" alt="carusel-image-3" />
+                    <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--3s.avif" alt="dansil mirilor" />
                 </div>
             </div>
             <div>
                 <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--4s.avif)' }}>
-                    <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--4s.avif" alt="carusel-image-4" />
+                    <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--4s.avif" alt="poza miri biserica" />
                 </div>
             </div>
             <div>
                 <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--5s.avif)' }}>
-                    <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--5s.avif" alt="carusel-image-5" />
+                    <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--5s.avif" alt=" se saruta miri" />
                 </div>
             </div>
             <div>
                 <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--6s.avif)' }}>
-                    <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--6s.avif" alt="carusel-image-6" />
+                    <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--6s.avif" alt="se saruta mirii in parc" />
                 </div>
             </div>
             <div>
                 <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--7s.avif)' }}>
-                    <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--7s.avif" alt="carusel-image-7" />
+                    <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--7s.avif" alt="poza cu mirii in biserica " />
                 </div>
             </div>
             <div>
                 <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--8s.avif)' }}>
-                    <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--8s.avif" alt="carusel-image-8" />
+                    <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--8s.avif" alt="dansul mirilor petrecere" />
                 </div>
             </div>
 

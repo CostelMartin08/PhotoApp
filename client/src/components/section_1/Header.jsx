@@ -10,7 +10,6 @@ const Header = (props) => {
     const location = useLocation();
     const param = location.pathname.split('/');
 
-    console.log(param[0])
 
     const disconnection = () => {
         Axios({
@@ -47,10 +46,10 @@ const Header = (props) => {
                             <a className={location.pathname === "/" ? "nav-set nav-link" : "nav-link"} aria-current="page" href="/">Acasă</a>
                         </li>
                         <li className="nav-item">
-                            <a className={param[1] === "/despremine" ? "nav-set nav-link" : "nav-link"} href="#">Despre mine</a>
+                            <Link className={param[1] === "/despremine" ? "nav-set nav-link" : "nav-link"} to="#">Despre mine</Link>
                         </li>
                         <li className="nav-item dropdown">
-                            <a className={param[1] === "portofoliuFoto" ? "nav-set dropdown nav-link dropdown-toggle" : "dropdown nav-link dropdown-toggle"} href="#" data-bs-toggle="dropdown" aria-expanded="true">Portofoliu Foto</a>
+                            <Link className={param[1] === "portofoliuFoto" ? "nav-set dropdown nav-link dropdown-toggle" : "dropdown nav-link dropdown-toggle"} to="#" data-bs-toggle="dropdown" aria-expanded="true">Portofoliu Foto</Link>
                             <ul className="bg-second-set dropdown-menu">
                                 <li><Link className="dropdown-item" to="/portofoliuFoto/Nunti">Nunți</Link></li>
                                 <li><Link className="dropdown-item" to="/portofoliuFoto/Botezuri" >Botezuri</Link></li>
@@ -58,7 +57,7 @@ const Header = (props) => {
                             </ul>
                         </li>
                         <li className="nav-item dropdown">
-                            <a className={param[1] === "portofoliuVideo" ? "nav-set dropdown nav-link dropdown-toggle" : "dropdown nav-link dropdown-toggle"} href="#" data-bs-toggle="dropdown" aria-expanded="false" >Portofoliu Video</a>
+                            <Link className={param[1] === "portofoliuVideo" ? "nav-set dropdown nav-link dropdown-toggle" : "dropdown nav-link dropdown-toggle"} href="#" data-bs-toggle="dropdown" aria-expanded="false" >Portofoliu Video</Link>
                             <ul className="bg-second-set dropdown-menu">
                                 <li><Link className="dropdown-item" to="/portofoliuVideo/Nunti">Nunți</Link></li>
                                 <li><Link className="dropdown-item" to="/portofoliuVideo/Diverse" >Diverse</Link></li>
