@@ -8,6 +8,7 @@ import Footer from './Footer';
 
 const WeddingPhoto = (props) => {
   const { category } = useParams();
+  const [data, setdata] = useState([]);
   const [state, setState] = useState(false);
   const [reload, setReload] = useState(false);
   const location = useLocation();
@@ -39,9 +40,15 @@ const WeddingPhoto = (props) => {
     }
   };
 
+  useEffect(() => {
+    if (Array.isArray(props.sendData)) {
+      setdata(props.sendData);
+    }
+  }, [props.sendData])
+
   const renderAlbums = () => {
     return (
-      (state ? props.sendData.slice(0, 6) : props.sendData).map((album, index) => (
+      data.map((album, index) => (
         <div key={album._id} className="col-sm-8 col-md-6 col-lg-4 position-relative">
           <Link className="card shadow" to={category === undefined ? `portofoliuFoto/Nunti/${album.title}/${index}` : `${album.title}/${index}`}>
             <img className="full-width-image" src={category === undefined ? `/uploads/Nunti/${album.content[0]}` : `/uploads/${category}/${album.content[0]}`} alt={`galerie-foto${index}`} />
