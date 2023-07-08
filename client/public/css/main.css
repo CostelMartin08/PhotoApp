@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap');
 @import url('./section1.css');
-@import url('./section2.css');
 @import url('./variables.css');
 
 
@@ -36,10 +34,11 @@
 .dropdown-item {
     color: white;
 }
+
 .dropdown-item:active {
 
-color:white;
-background-color: var(--color-bg);
+    color: white;
+    background-color: var(--color-bg);
 
 }
 
@@ -50,6 +49,10 @@ i {
 
 li {
     list-style: none;
+}
+
+a {
+    color: inherit;
 }
 
 .box-model {
@@ -70,7 +73,3 @@ li {
     border-bottom: solid 3px var(--color-bg-second);
 
 }
-
-
-
-  

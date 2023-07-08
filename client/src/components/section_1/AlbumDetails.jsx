@@ -13,6 +13,7 @@ function AlbumDetails(props) {
     const { index } = useParams();
     const location = useLocation();
     const param = location.pathname.split('/');
+    const [loading, setLoading] = useState(false);
     const [slideNumber, setSlideNumber] = useState(0);
     const [openModal, setOpenModal] = useState(false);
     const gridRef = useRef(null);
@@ -21,25 +22,27 @@ function AlbumDetails(props) {
 
     useEffect(() => {
         if (data) {
+            setLoading(true);
             const grid = gridRef.current;
-            const masonryInstance = new Masonry(grid, {
-                itemSelector: '.grid-item',
-                columnWidth: '.grid-sizer',
-                percentPosition: true,
-            });
-            const imagesLoadedInstance = imagesLoaded(grid);
-    
-            imagesLoadedInstance.on('always', () => {
-                masonryInstance.layout();
-            });
-    
-            return () => {
-                imagesLoadedInstance.off('always');
-            };
-        }
-    }, [data]);
-    
 
+            if (grid) {
+                const masonryInstance = new Masonry(grid, {
+                    itemSelector: '.grid-item',
+                    columnWidth: '.grid-sizer',
+                    percentPosition: true,
+                });
+                const imagesLoadedInstance = imagesLoaded(grid);
+
+                imagesLoadedInstance.on('always', () => {
+                    masonryInstance.layout();
+                });
+
+                return () => {
+                    imagesLoadedInstance.off('always');
+                };
+            }
+        }
+    }, [loading, data]);
 
 
     useEffect(() => {
@@ -83,7 +86,8 @@ function AlbumDetails(props) {
         });
     };
 
-
+    const url = `${param[2]}/${data ? data.title : null}/${data ? data.content[1] : null}`;
+    const existingURL = encodeURIComponent(url) ?? 'defaultURL';
 
     return (
         <section>
@@ -91,18 +95,15 @@ function AlbumDetails(props) {
             <main>
                 {props.sendData && props.sendData.length > 0 ? (
                     <div>
-                        <div className="banner">
-                            <div
-                                className="bg-albumdetails"
-                                style={{ backgroundImage: `url(/uploads/${param[2]}/${props.sendData[index].content[1]})` }}>
-                                <div className='bg-content mx-3'>
-                                    <h3 className="title-font mb-2">{props.sendData[index].title}</h3>
-                                    <p className="text-font">{props.sendData[index].description}</p>
-                                </div>
+                        <div className="banner position-relative">
+                            <div className="bg-albumdetails"
+                                style={{ backgroundImage: `url(https://balanandrei.ro/images/${existingURL})` }}>
                             </div>
-
+                            <div className='bg-content mx-3 position-absolute'>
+                                <h3 className="title-font mb-2">{data.title}</h3>
+                                <p className="text-font">{data.description}</p>
+                            </div>
                         </div>
-
                         {openModal && (
                             <div className="sliderWrap">
                                 <div className="fullScreenImage my-auto">
@@ -123,7 +124,7 @@ function AlbumDetails(props) {
                                                 <TransformComponent onDoubleClick={zoomIn}>
                                                     <img
                                                         className="mx-auto img-fluid"
-                                                        src={`/uploads/${param[2]}/${props.sendData[index].content[slideNumber]}`}
+                                                        src={`https://balanandrei.ro/images/${param[2]}/${props.sendData[index].title}/${props.sendData[index].content[slideNumber]}`}
                                                         alt={`galery${props.sendData[index].content[slideNumber]}`}
                                                     />
                                                 </TransformComponent>
@@ -143,20 +144,20 @@ function AlbumDetails(props) {
                         )}
 
                         <div className="container-fluid">
-                            <div className="masonry-grid" ref={gridRef}>
-                                <div className="grid-sizer"></div>
-                                {props.sendData[index].content &&
-                                    props.sendData[index].content.map((slide, indexu) => (
-                                        <div className="grid-item" key={indexu} onClick={() => handleOpenModal(indexu)}>
-                                            <img
-                                                className="photo-grid "
-                                                src={`/uploads/${param[2]}/${slide}`}
-                                                alt={`poza${indexu}`}
-                                                loading="lazy"
-                                            />
-                                        </div>
-                                    ))}
-                            </div>
+                            {loading ?
+                                <div className="masonry-grid" ref={gridRef}>
+                                    <div className="grid-sizer"></div>
+                                    {props.sendData[index].content &&
+                                        props.sendData[index].content.map((slide, indexu) => (
+                                            <div className="grid-item" key={indexu} onClick={() => handleOpenModal(indexu)}>
+                                                <img
+                                                    className="photo-grid "
+                                                    src={`https://balanandrei.ro/images/${param[2]}/${props.sendData[index].title}/${slide}`}
+                                                    alt={`poza${indexu}`}
+                                                />
+                                            </div>
+                                        ))}
+                                </div> : <Loaders />}
                         </div>
                     </div>
                 ) : (

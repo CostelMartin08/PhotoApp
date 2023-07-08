@@ -3,6 +3,7 @@ const passport = require('passport');
 const bcrypt = require("bcryptjs");
 const User = require("../schema/userSchema");
 const router = express.Router();
+const mongoose = require('mongoose');
 
 router.post("/", async (req, res) => {
 

@@ -9,7 +9,8 @@ const InputFile = (props) => {
     return (
         <section className="d-flex flex-column align-items-center">
             <div class="box-mdl">
-                <span class="form-title">Încarca conținut</span>
+                <span class="form-title">Încarca poze</span>
+                <p className="texxt-danger">{props.error}</p>
                 <div class="drop-container my-3">
                     <input className="file-input" type="text" onChange={(e) => props.uploadtext(e.target.value)} name="inputText" id="textInput" placeholder="Introdu titlul" ></input>
                     <textarea className="file-input" onChange={(e) => props.uploadtextArea(e.target.value)} id="story" name="story" placeholder="Povestea evenimentului" ></textarea>

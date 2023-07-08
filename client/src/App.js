@@ -11,6 +11,7 @@ import WeddingPhoto from "./components/section_1/weddingPhoto";
 import ControlPanel from "./components/section_1/controlPanel";
 import AlbumDetails from "./components/section_1/AlbumDetails";
 import VideoDetails from "./components/section_1/videoDetails";
+import PageNotFound from "./components/section_1/notFound";
 
 const App = () => {
   const [connection, setConnection] = useState(false);
@@ -53,13 +54,21 @@ const App = () => {
         <Route path='/login' element={<Login connection={login} />} />
         <Route path='/register' element={<Register />} />
         <Route path='/' element={<Main disconnection={logout} status={connection} loadingData={getData} sendData={data} />} />
-        <Route path='/controlPanel' element={<ControlPanel status={connection} disconnection={logout} />} />
-        <Route path='portofoliuFoto/:category' element={<WeddingPhoto loadingData={getData} sendData={data} status={connection}  />} />
-        <Route path='portofoliuVideo/:video' element ={<VideoDetails />}/>
         <Route path="portofoliuFoto/:category/:title/:index" element={<AlbumDetails loadingData={getData} sendData={data} />} />
+        <Route path="/controlPanel" element={connection ? (<ControlPanel status={connection} disconnection={logout} />) : (<PageNotFound />)} />
+        <Route path='portofoliuFoto/:category' element={<WeddingPhoto loadingData={getData} sendData={data} status={connection} />} />
+        <Route path='/portofoliuVideo/Diverse' element={<VideoDetails status={connection} />} />
+        <Route path="*" element={<PageNotFound />} />
+        <Route path="/notFound" element={<PageNotFound />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
+
+
+
+
+
+

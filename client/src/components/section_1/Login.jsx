@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
@@ -20,6 +21,7 @@ const Login = (props) => {
             .then((res) => {
                 if (res.status === 200) {
                     navigate('/');
+                    console.log(res.data);
                     localStorage.setItem('status', true);
                     props.connection();
                 } else {

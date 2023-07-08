@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./Header";
 import Carusel from "./Carusel";
 import Presentation from "./presentation";
-import WeaddingPhoto from "./weddingPhoto"
+import MixPhoto from "./MixPhoto";
 import Footer from "./Footer";
 
 const Main = (props) => {
@@ -16,7 +16,7 @@ const Main = (props) => {
       <main>
         <Carusel />
         <Presentation />
-        <WeaddingPhoto loadingData={props.loadingData} sendData={props.sendData}  />
+        <MixPhoto loadingData={props.loadingData} sendData={props.sendData} />
       </main>
       <Footer />
 

@@ -1,27 +1,39 @@
 import React, { useEffect, useState } from "react";
-import Axios from "axios";
-import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { useLocation } from "react-router-dom";
+import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
+import Axios from "axios";
+
 
 const WeddingPhoto = (props) => {
   const { category } = useParams();
   const [data, setdata] = useState([]);
-  const [state, setState] = useState(false);
-  const [reload, setReload] = useState(false);
-  const location = useLocation();
+  const history = useNavigate();
+
 
   useEffect(() => {
-    if (location.pathname === "/") {
-      props.loadingData("Nunti");
-      setState(true);
-    } else {
-      props.loadingData(category);
-      setState(false);
+    switch (category) {
+      case 'Nunti':
+      case "Botezuri":
+      case "Diverse":
+
+        props.loadingData(category);
+        break;
+
+      default:
+        history("/notFound");
+        break;
     }
-  }, [category, reload]);
+  }, [category, history])
+
+  useEffect(() => {
+
+    if (Array.isArray(props.sendData)) {
+      setdata(props.sendData);
+    }
+  }, [props.sendData])
 
   const oneDelete = async (id) => {
     try {
@@ -30,28 +42,22 @@ const WeddingPhoto = (props) => {
         withCredentials: true,
         url: `http://localhost:5000/delete/${category}/${id}`,
       });
-      setReload(true);
+
+
+      props.loadingData(category);
+
     } catch (error) {
       console.error(error);
-    } finally {
-      setTimeout(() => {
-        setReload(false);
-      }, 500);
     }
   };
 
-  useEffect(() => {
-    if (Array.isArray(props.sendData)) {
-      setdata(props.sendData);
-    }
-  }, [props.sendData])
 
   const renderAlbums = () => {
     return (
       data.map((album, index) => (
         <div key={album._id} className="col-sm-8 col-md-6 col-lg-4 position-relative">
-          <Link className="card shadow" to={category === undefined ? `portofoliuFoto/Nunti/${album.title}/${index}` : `${album.title}/${index}`}>
-            <img className="full-width-image" src={category === undefined ? `/uploads/Nunti/${album.content[0]}` : `/uploads/${category}/${album.content[0]}`} alt={`galerie-foto${index}`} />
+          <Link className="card shadow" to={`${album.title}/${index}`}>
+            <img className="full-width-image" src={`https://balanandrei.ro/images/${category}/${album.title}/${album.content[0]}`} alt={`galerie-foto${index}`} />
             <span className="text-card ms-3 mb-3 h5" aria-label={album.title}>
               {album.title}
             </span>
@@ -64,25 +70,14 @@ const WeddingPhoto = (props) => {
 
   return (
     <div>
-      {!state ? <Header /> : null}
-      <main className={!state ? ' mt-5 container-fluid px-5' : 'container-fluid px-5'}>
-        {state &&
-          <div className="d-flex flex-column align-items-center pt-4 pb-4">
-            <h3 className="text-fon-big text-center bg-font-set"><strong>Portofoliu fotografii Nunți</strong></h3>
-            <p className="text-body-secondary m-0">Pentru video accesează </p>
-            <Link className="type-button text-decoration-none" to="/portofoliuVideo/Nunti">Portofoliu Video</Link>
-          </div>
-        }
+      <Header />
+      <main className='container-fluid px-5 mt-5'>
+
         <div className="row justify-content-sm-center justify-content-md-start g-4 text-center">
           {renderAlbums()}
         </div>
-        {state &&
-          <div className="text-center pt-4">
-            <Link className="button" to="/portofoliuFoto/Nunti">Vezi mai mult</Link>
-          </div>
-        }
       </main>
-      {!state ? <Footer /> : null}
+      <Footer />
     </div>
   );
 }

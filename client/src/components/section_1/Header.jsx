@@ -24,61 +24,54 @@ const Header = (props) => {
     }
 
     return (
-        <header className="bg-set p-3 position-sticky top-0  bottom-1 z-2 shadow-lg">
-            <nav className="navbar px-0 navbar-expand-lg" aria-label="Eleventh navbar example">
-                <div className="d-flex align-items-center ">
-                    <img className="logo-img img-fluid rounded-3 border border-white" src={logo} alt="logo"></img>
-                    <p className="logo-text title-font ms-2 ms-md-3 ">Fotograf Andrei Balan</p>
-                </div>
-
-                <button className="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
-                    <input type="checkbox" id="checkbox" />
-                    <label htmlFor="checkbox" className="toggle m-0">
-                        <div className="bars" id="bar1"></div>
-                        <div className="bars" id="bar2"></div>
-                        <div className="bars" id="bar3"></div>
-                    </label>
-                </button>
-
-                <div className="navbar-collapse collapse d-lg-flex justify-content-end mt-2 mt-md-0" id="navbarsExample09" >
-                    <ul className="text-font navbar-nav ms-1 mb-2 mb-lg-0 mt-2 mt-lg-0" >
-                        <li className="nav-item">
-                            <a className={location.pathname === "/" ? "nav-set nav-link" : "nav-link"} aria-current="page" href="/">Acasă</a>
-                        </li>
-                        <li className="nav-item">
-                            <Link className={param[1] === "/despremine" ? "nav-set nav-link" : "nav-link"} to="#">Despre mine</Link>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <Link className={param[1] === "portofoliuFoto" ? "nav-set dropdown nav-link dropdown-toggle" : "dropdown nav-link dropdown-toggle"} to="#" data-bs-toggle="dropdown" aria-expanded="true">Portofoliu Foto</Link>
-                            <ul className="bg-second-set dropdown-menu">
-                                <li><Link className="dropdown-item" to="/portofoliuFoto/Nunti">Nunți</Link></li>
-                                <li><Link className="dropdown-item" to="/portofoliuFoto/Botezuri" >Botezuri</Link></li>
-                                <li><Link className="dropdown-item" to="/portofoliuFoto/Diverse" >Diverse</Link></li>
-                            </ul>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <Link className={param[1] === "portofoliuVideo" ? "nav-set dropdown nav-link dropdown-toggle" : "dropdown nav-link dropdown-toggle"} href="#" data-bs-toggle="dropdown" aria-expanded="false" >Portofoliu Video</Link>
-                            <ul className="bg-second-set dropdown-menu">
-                                <li><Link className="dropdown-item" to="/portofoliuVideo/Nunti">Nunți</Link></li>
-                                <li><Link className="dropdown-item" to="/portofoliuVideo/Diverse" >Diverse</Link></li>
-                            </ul>
-                        </li>
-
-                        {props.status ? (
+        <header className="bg-set p-2 pt-3 pb-3 position-sticky top-0 z-2 shadow-lg">
+            <div className="container">
+                <nav className="navbar  navbar-expand-lg p-0">
+                    <div className="d-flex align-items-center">
+                        <img className="logo-img img-fluid rounded-3 border border-white" src={logo} alt="logo"></img>
+                        <a href="/" className="logo-text title-font fs-6 ms-2 ms-md-3 ">Fotograf Andrei Balan</a>
+                    </div>
+                    <button className="navbar-toggler collapsed p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+                        <input type="checkbox" id="checkbox" />
+                        <label htmlFor="checkbox" className="toggle m-0">
+                            <div className="bars" id="bar1"></div>
+                            <div className="bars" id="bar2"></div>
+                            <div className="bars" id="bar3"></div>
+                        </label>
+                    </button>
+                    <div className="navbar-collapse collapse d-lg-flex justify-content-end mt-2 mt-md-0" id="navbarsExample09" >
+                        <ul className="text-font navbar-nav ms-1 mb-2 mb-lg-0 mt-2 mt-lg-0" >
                             <li className="nav-item">
-                                <Link className="nav-link" to="/login" onClick={disconnection}>Deconectare</Link>
-                            </li>) : null}
-                        {props.status ? (
-                            <li className="nav-item">
-                                <Link className={location.pathname === "/controlPanel" ? "nav-set nav-link" : "nav-link"} to="/controlPanel">Încarca</Link>
-                            </li>) : null}
-                    </ul>
-
-                </div>
-
-            </nav>
+                                <a className={location.pathname === "/" ? "nav-set nav-link" : "nav-link"} aria-current="page" href="/">Acasă</a>
+                            </li>
+                            <li className="nav-item dropdown">
+                                <Link className={param[1] === "portofoliuFoto" ? "nav-set dropdown nav-link dropdown-toggle" : "dropdown nav-link dropdown-toggle"} to="#" data-bs-toggle="dropdown" aria-expanded="true">Portofoliu Foto</Link>
+                                <ul className="bg-second-set dropdown-menu">
+                                    <li><Link className="dropdown-item" to="/portofoliuFoto/Nunti">Nunți</Link></li>
+                                    <li><Link className="dropdown-item" to="/portofoliuFoto/Botezuri" >Botezuri</Link></li>
+                                    <li><Link className="dropdown-item" to="/portofoliuFoto/Diverse" >Diverse</Link></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <Link to="/portofoliuVideo/Diverse" className={param[1] === "portofoliuVideo" ? "nav-set nav-link" : "nav-link"} aria-expanded="false" >Portofoliu Video</Link>
+                            </li>
+                            {props.status ? (
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/login" onClick={disconnection}>Deconectare</Link>
+                                </li>) : null}
+                            {props.status ? (
+                                <li className="nav-item">
+                                    <Link className={location.pathname === "/controlPanel" ? "nav-set nav-link" : "nav-link"} to="/controlPanel">Încarca</Link>
+                                </li>) : null}
+                        </ul>
+                    </div>
+                </nav>
+            </div>
         </header>
     );
 }
 
 export default Header;
+
+
+

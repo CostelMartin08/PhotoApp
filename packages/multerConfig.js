@@ -1,24 +1,34 @@
 const multer = require("multer");
+const path = require('path');
+const fs = require('fs');
 
 const storage = multer.diskStorage({
-    destination: function (req, files, cb) {
+    destination: function (req, file, cb) {
+        const category = file.fieldname;
+        const text = req.body.text;
 
-        switch (files.fieldname) {
+        let destinationPath = "public/uploads";
+
+        switch (category) {
             case 'nunti':
-                cb(null, "client/public/uploads/Nunti");
+                destinationPath = path.join(destinationPath, "Nunti", text);
                 break;
             case 'botezuri':
-                cb(null, "client/public/uploads/Botezuri");
+                destinationPath = path.join(destinationPath, "Botezuri", text);
                 break;
             case 'diverse':
-                cb(null, "client/public/uploads/Diverse");
+                destinationPath = path.join(destinationPath, "Diverse", text);
                 break;
-            default:
-                cb(null, "client/public/uploads");
         }
+
+        
+        if (!fs.existsSync(destinationPath)) {
+            fs.mkdirSync(destinationPath, { recursive: true });
+        }
+
+        cb(null, destinationPath);
     },
     filename: function (req, file, cb) {
-        console.log(file)
         cb(null, file.originalname);
     },
 });

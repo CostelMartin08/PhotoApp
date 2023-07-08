@@ -3,6 +3,7 @@ const router = express.Router();
 const Nunti = require("../schema/photo1Schema");
 const Botezuri = require("../schema/photo2Schema");
 const Diverse = require("../schema/photo3Schema");
+const Video = require("../schema/videoSchema");
 
 
 const checkAuthenticated = function (req, res, next) {
@@ -50,6 +51,22 @@ router.delete('/:category/:id', checkAuthenticated, (req, res) => {
       console.log(err);
       res.status(500).send({ error: 'Error deleting the collection' });
     });
+});
+
+router.delete('/:url', checkAuthenticated, (req, res) => {
+
+  const url = req.params.url;
+
+  const query = { _id: url };
+
+  Video.deleteOne(query)
+    .then((result) => {
+      res.send({ message: "Delete", result });
+    })
+    .catch((err) => {
+      res.status(500).send({ error: 'Error deleting video', err });
+    });
+
 });
 
 module.exports = router;

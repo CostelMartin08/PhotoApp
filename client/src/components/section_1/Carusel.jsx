@@ -22,46 +22,76 @@ const Carusel = () => {
     return (
         <Slider  {...settings} >
             <div>
-                <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--1s.avif)' }}>
-                    <img className="img-fluid mx-auto carusel-img"
-                        src="/uploads/carusel--1s.avif"
-                        alt="miri pe alee" />
+                <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--1mobile.webp)' }}>
+                    <picture>
+                        <source srcSet="/uploads/carusel--1mobile.webp" media="(max-width: 600px)" />
+                        <source srcSet="/uploads/carusel--1.webp" media="(min-width: 600px)" />
+                        <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--1.webp" alt="miri pe alee" />
+                    </picture>
                 </div>
 
             </div>
             <div>
-                <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--2s.avif)' }}>
-                    <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--2s.avif" alt="miri pe punte" />
+                <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--2mobile.webp)' }}>
+                    <picture>
+                        <source srcSet="/uploads/carusel--2mobile.webp" media="(max-width: 600px)" />
+                        <source srcSet="/uploads/carusel--2.webp" media="(min-width: 600px)" />
+                        <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--2.webp" alt="miri pe alee" />
+                    </picture>
                 </div>
             </div>
             <div>
-                <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--3s.avif)' }}>
-                    <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--3s.avif" alt="dansil mirilor" />
+                <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--3mobile.webp)' }}>
+                    <picture>
+                        <source srcSet="/uploads/carusel--3mobile.webp" media="(max-width: 600px)" />
+                        <source srcSet="/uploads/carusel--3.webp" media="(min-width: 600px)" />
+                        <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--3.webp" alt="miri pe alee" />
+                    </picture>
                 </div>
             </div>
             <div>
-                <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--4s.avif)' }}>
-                    <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--4s.avif" alt="poza miri biserica" />
+                <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--4mobile.webp)' }}>
+                    <picture>
+                        <source srcSet="/uploads/carusel--4mobile.webp" media="(max-width: 600px)" />
+                        <source srcSet="/uploads/carusel--4.webp" media="(min-width: 600px)" />
+                        <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--4.webp" alt="miri pe alee" />
+                    </picture>
                 </div>
             </div>
             <div>
-                <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--5s.avif)' }}>
-                    <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--5s.avif" alt=" se saruta miri" />
+                <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--5mobile.webp)' }}>
+                    <picture>
+                        <source srcSet="/uploads/carusel--5mobile.webp" media="(max-width: 600px)" />
+                        <source srcSet="/uploads/carusel--5.webp" media="(min-width: 600px)" />
+                        <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--5.webp" alt="miri pe alee" />
+                    </picture>
                 </div>
             </div>
             <div>
-                <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--6s.avif)' }}>
-                    <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--6s.avif" alt="se saruta mirii in parc" />
+                <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--6mobile.webp)' }}>
+                    <picture>
+                        <source srcSet="/uploads/carusel--6mobile.webp" media="(max-width: 600px)" />
+                        <source srcSet="/uploads/carusel--6.webp" media="(min-width: 600px)" />
+                        <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--6.webp" alt="miri pe alee" />
+                    </picture>
                 </div>
             </div>
             <div>
-                <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--7s.avif)' }}>
-                    <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--7s.avif" alt="poza cu mirii in biserica " />
+                <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--7mobile.webp)' }}>
+                    <picture>
+                        <source srcSet="/uploads/carusel--7mobile.webp" media="(max-width: 600px)" />
+                        <source srcSet="/uploads/carusel--7.webp" media="(min-width: 600px)" />
+                        <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--7.webp" alt="miri pe alee" />
+                    </picture>
                 </div>
             </div>
             <div>
-                <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--8s.avif)' }}>
-                    <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--8s.avif" alt="dansul mirilor petrecere" />
+                <div className="background" style={{ backgroundImage: 'url(/uploads/carusel--8mobile.webp)' }}>
+                    <picture>
+                        <source srcSet="/uploads/carusel--8mobile.webp" media="(max-width: 600px)" />
+                        <source srcSet="/uploads/carusel--8.webp" media="(min-width: 600px)" />
+                        <img className="img-fluid mx-auto carusel-img" src="/uploads/carusel--8.webp" alt="miri pe alee" />
+                    </picture>
                 </div>
             </div>
 

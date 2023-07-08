@@ -15,17 +15,17 @@ const loginRouter = require('./routes/login');
 const logoutRouter = require('./routes/logout');
 const registerRouter = require('./routes/register');
 const uploadRouter = require('./routes/upload');
+const allContent = require('./routes/allContent');
 const deleteRouter = require('./routes/delete');
 /* -------------------------------------------------------------------------- */
-const database = require('./schema/mongoDBconect');
+const database = require('./schema/mongoConnect');
 /* -------------------------------------------------------------------------- */
 /*                                 Middleware                                 */
 /* -------------------------------------------------------------------------- */
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(express.static('public'));
 app.use(
     cors({
         origin: 'http://localhost:3000',
@@ -48,13 +48,12 @@ require('./packages/passportConfig')(passport);
 /*                                   Routes                                   */
 /* -------------------------------------------------------------------------- */
 
-
 app.use('/login', loginRouter);
 app.use('/disconnection', logoutRouter);
 app.use('/register', registerRouter);
 app.use('/galerie', uploadRouter);
+app.use('/allContent', allContent);
 app.use('/delete', deleteRouter);
-
 
 app.get('/user', (req, res) => {
     res.send(req.user);

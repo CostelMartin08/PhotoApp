@@ -1,13 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@700&family=Poppins:wght@200&display=swap');
-
-
 :root {
 
     --font-title: 'Arvo', serif;
     --font-text: 'Poppins', sans-serif;
-
-    --color-bg:#333333 ;
-    --color-bg-second: #494B42;
+    --color-bg: #494B42;
+    --color-bg-second: #333333;
 
 }
-
