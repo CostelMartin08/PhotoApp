@@ -8,20 +8,20 @@ const InputFile = (props) => {
 
     return (
         <section className="d-flex flex-column align-items-center">
-            <div class="box-mdl">
-                <span class="form-title">Încarca poze</span>
-                <p className="texxt-danger">{props.error}</p>
-                <div class="drop-container my-3">
+            <div className="box-mdl">
+                <span className="form-title">Încarca poze</span>
+                <p className="text-danger">{props.error}</p>
+                <div className="drop-container my-3">
                     <input className="file-input" type="text" onChange={(e) => props.uploadtext(e.target.value)} name="inputText" id="textInput" placeholder="Introdu titlul" ></input>
                     <textarea className="file-input" onChange={(e) => props.uploadtextArea(e.target.value)} id="story" name="story" placeholder="Povestea evenimentului" ></textarea>
                 </div>
-                <label for="file" class="drop-container">
-                    <span class="drop-title">Drop files here</span>
+                <label htmlFor="file" className="drop-container">
+                    <span className="drop-title">Drop files here</span>
                     or
                     <input type="file" id="file" onChange={(e) => props.uploadfile(e.target.files)} name="file" multiple className="file-input" />
                 </label>
 
-                <label class="drop-container" htmlFor="select">Destinatia:
+                <label className="drop-container" htmlFor="select">Destinatia:
 
                     <select name="select" id="select" className="file-input" onChange={(e) => props.uploadSelect(e.target.value)}>
                         <option value="">Alege colecția</option>

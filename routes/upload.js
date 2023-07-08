@@ -167,9 +167,11 @@ router.post('/video', upload.none(), checkAuthenticated, (req, res) => {
     Video.create(newVideo)
         .then((createdVideo) => {
             console.log("The video has been added to the database:", createdVideo);
+            res.status(200).send("OK");
         })
         .catch((error) => {
             console.error("Error loading event video:", error);
+            res.status(500).send("Ceva nu a mers bine");
         })
 
 

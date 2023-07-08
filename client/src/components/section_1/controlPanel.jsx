@@ -3,7 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Axios from "axios";
 import InputFile from "./inputFile";
-
+import Manage from "./manage";
 
 const ControlPanel = (props) => {
 
@@ -45,7 +45,6 @@ const ControlPanel = (props) => {
             withCredentials: true,
         })
             .then((response) => {
-                console.log(response.status);
                 if (response.status === 200) {
                     setResponse(true);
                 } else {
@@ -67,7 +66,6 @@ const ControlPanel = (props) => {
             withCredentials: true,
         })
             .then((response) => {
-                console.log(response.status);
                 if (response.status === 200) {
                     setResponse(true);
 
@@ -96,41 +94,45 @@ const ControlPanel = (props) => {
             <Header disconnection={props.disconnection} status={props.status} />
             <main>
                 <div className=" pt-5">
-                    <div className="row  align-items-center justify-content-center">
-                        <div className="col-12 col-md-5">
-                            <form method="post" action="/galerie" encType="multipart/form-data" onSubmit={uploadContent}>
+                    {!response ?
+                        <div className="row  align-items-center justify-content-center">
+                            <div className="col-12 col-md-5">
 
-                                < InputFile
-                                    uploadfile={uploadfile}
-                                    uploadContent={uploadContent}
-                                    uploadtext={uploadtext}
-                                    uploadtextArea={uploadtextArea}
-                                    uploadSelect={uploadSelect} />
+                                <form method="post" action="/galerie" encType="multipart/form-data" onSubmit={uploadContent}>
 
-                            </form>
-                        </div>
-                        <div className="col-12 col-md-5 pt-4">
-                            <div className="d-flex flex-column align-items-center">
-                                <div className="box-mdl">
-                                    <form method="post" action="/galerie/video" encType="multipart/form-data" onSubmit={uploadVideoZ}>
-                                        <span className="form-title">Încarcă video </span>
-                                        <div className="drop-container my-3">
-                                            <input className="file-input" type="text" onChange={(e) => uploadVideo(e.target.value)} name="inputVideo" id="VideoInput" placeholder="Introdu URL-ul" ></input>
-                                        </div>
-                                        <label className="drop-container" htmlFor="select">Destinatia:
+                                    < InputFile
+                                        uploadfile={uploadfile}
+                                        uploadContent={uploadContent}
+                                        uploadtext={uploadtext}
+                                        uploadtextArea={uploadtextArea}
+                                        uploadSelect={uploadSelect}
+                                        error={error} />
+                                </form>
+                            </div>
+                            <div className="col-12 col-md-5 pt-4">
+                                <div className="d-flex flex-column align-items-center">
+                                    <div className="box-mdl">
+                                        <form method="post" action="/galerie/video" encType="multipart/form-data" onSubmit={uploadVideoZ}>
+                                            <span className="form-title">Încarcă video </span>
+                                            <p className="text-danger">{props.error}</p>
+                                            <div className="drop-container my-3">
+                                                <input className="file-input" type="text" onChange={(e) => uploadVideo(e.target.value)} name="inputVideo" id="VideoInput" placeholder="Introdu URL-ul" ></input>
+                                            </div>
+                                            <label className="drop-container" htmlFor="select">Destinatia:
 
-                                            <select name="select" id="select" className="file-input">
-                                                <option value="">Alege colecția</option>
-                                                <option value="Diverse">Video Diverse</option>
+                                                <select name="select" id="select" className="file-input">
+                                                    <option value="">Alege colecția</option>
+                                                    <option value="Diverse">Portofoliu Video</option>
 
-                                            </select>
-                                        </label>
-                                        <button className="file-input-submit btn btn-success my-3" type="submit">Postează</button>
-                                    </form>
+                                                </select>
+                                            </label>
+                                            <button className="file-input-submit btn btn-success my-3" type="submit">Postează</button>
+                                        </form>
+
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </div> : <Manage />}
 
                 </div>
             </main>
